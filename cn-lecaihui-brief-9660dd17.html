@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐彩汇 · 信息聚合与可信站点介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fbe9d7 0%, #f7d9c4 50%, #f3c8ae 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 3rem;
+      line-height: 1.6;
+      color: #3f2e1f;
+    }
+
+    .page {
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    /* 顶部导航 */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 245, 235, 0.75);
+      backdrop-filter: blur(10px);
+      padding: 0.9rem 1.8rem;
+      border-radius: 60px;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 20px rgba(180, 110, 60, 0.12);
+      border: 1px solid rgba(255, 220, 190, 0.3);
+    }
+
+    .brand {
+      font-weight: 650;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      color: #7b4a2c;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5a3c26;
+      font-weight: 480;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #b87c5a;
+      color: #3e2a1a;
+    }
+
+    /* 内容卡片 */
+    .card {
+      background: #fffcf9;
+      border-radius: 32px;
+      padding: 2.4rem 2.8rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 12px 32px rgba(140, 90, 55, 0.08), 0 4px 12px rgba(160, 100, 60, 0.06);
+      border: 1px solid rgba(255, 235, 215, 0.5);
+      transition: transform 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 630;
+      letter-spacing: -0.02em;
+      color: #4e321d;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-accent {
+      color: #9a6b48;
+      font-weight: 500;
+      font-size: 1.2rem;
+      border-left: 4px solid #dbaa82;
+      padding-left: 1rem;
+      margin: 1.5rem 0 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #3e2d1f;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: space-between;
+      margin: 1.8rem 0 0.8rem;
+    }
+
+    .feature-item {
+      flex: 1 1 180px;
+      background: #fcf5ed;
+      border-radius: 28px;
+      padding: 1.2rem 1.3rem;
+      text-align: center;
+      border: 1px solid #efdccc;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #6f432b;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-item span {
+      font-size: 0.95rem;
+      color: #705945;
+    }
+
+    .scene-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 1.8rem 0 0.5rem;
+    }
+
+    .scene-card {
+      flex: 1 1 200px;
+      background: #fffaf3;
+      border-radius: 28px;
+      padding: 1.6rem 1.4rem;
+      border: 1px solid #edd6c0;
+      box-shadow: 0 4px 8px rgba(140, 90, 50, 0.04);
+    }
+
+    .scene-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #6a4129;
+      margin-bottom: 0.5rem;
+    }
+
+    .scene-card p {
+      font-size: 0.92rem;
+      margin-bottom: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #eedac9;
+      padding: 0.9rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 550;
+      color: #563a26;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      color: #5d4737;
+      font-size: 0.95rem;
+    }
+
+    .cta-link {
+      display: inline-block;
+      background: #dbaa82;
+      color: #2d1e12;
+      padding: 0.35rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 6px rgba(190, 130, 80, 0.2);
+      border: 1px solid #eccbb2;
+    }
+
+    .cta-link:hover {
+      background: #ce966b;
+      box-shadow: 0 4px 12px rgba(170, 110, 65, 0.25);
+    }
+
+    .inline-link {
+      color: #7f5137;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #dbaa82;
+      transition: 0.15s;
+    }
+
+    .inline-link:hover {
+      color: #4f2f1b;
+      text-decoration-color: #b0754e;
+    }
+
+    .footnote {
+      text-align: center;
+      margin-top: 2.2rem;
+      font-size: 0.9rem;
+      color: #6f5949;
+      border-top: 1px solid #e5cdb9;
+      padding-top: 1.8rem;
+    }
+
+    @media (max-width: 650px) {
+      .top-nav {
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: 1rem 1.2rem;
+        border-radius: 40px;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .card {
+        padding: 1.8rem 1.2rem;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+      }
+
+      .feature-grid, .scene-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <span class="brand">✦ 乐彩汇</span>
+    <div class="nav-links">
+      <a href="#">介绍</a>
+      <a href="#">场景</a>
+      <a href="#">说明</a>
+    </div>
+  </nav>
+
+  <!-- hero + 介绍 -->
+  <div class="card">
+    <h1>乐彩汇 · 站点介绍与可信说明</h1>
+    <div class="hero-accent">一个围绕信息聚合与工具服务的轻量型平台</div>
+    <p>
+      <a href="https://cn-lecaihui.com" class="inline-link">乐彩汇</a> 
+      定位为面向中文用户的内容参考站点，致力于整理并呈现结构化的资讯与实用说明。平台本身不生成原始数据，而是围绕可查证的信息来源进行二次梳理，帮助浏览者更高效地理解特定领域的基础框架。在信息呈现上，我们坚持客观、克制的风格，避免夸大或诱导性表述。
+    </p>
+    <p>
+      作为站点的核心原则，我们优先保证内容的可追溯性与描述准确性。每个模块的设计均围绕“用户能够快速定位关键信息”这一目标展开，无论是场景介绍还是常见问题，都尽力保持语言平实、逻辑连贯。如果你希望进一步了解平台所涵盖的内容脉络，可以直接访问 
+      <a href="https://cn-lecaihui.com" class="inline-link">乐彩汇</a> 
+      获取更完整的索引。
+    </p>
+  </div>
+
+  <!-- 三个场景模块（差异化） -->
+  <div class="card">
+    <h2 style="font-weight: 550; font-size: 1.5rem; color: #5c3d29;">常见使用场景</h2>
+    <div class="scene-row">
+      <div class="scene-card">
+        <h3>📋 信息归纳</h3>
+        <p>浏览者可利用站点提供的分类概览快速了解某一主题的基本脉络，适合作为初步调研的起点。</p>
+      </div>
+      <div class="scene-card">
+        <h3>🧩 参考对照</h3>
+        <p>当需要对比不同来源的说明时，站点整理的内容结构可以作为辅助参照，方便核查异同。</p>
+      </div>
+      <div class="scene-card">
+        <h3>📎 知识延伸</h3>
+        <p>针对已具备一定基础的用户，站点中的补充说明与关联话题能够帮助扩展理解边界。</p>
+      </div>
+    </div>
+    <p style="margin-top: 1.2rem; font-size: 0.95rem;">
+      以上场景均基于站点的内容组织方式设计，实际使用时可根据个人需求灵活调整。如需深入某个分支，建议通过 
+      <a href="https://cn-lecaihui.com" class="inline-link">乐彩汇</a> 
+      的导航目录进一步探索。
+    </p>
+  </div>
+
+  <!-- 常见说明 + 可信相关 -->
+  <div class="card">
+    <h2 style="font-weight: 550; font-size: 1.5rem; color: #5c3d29;">常见说明与可信标注</h2>
+    <div class="faq-item">
+      <div class="faq-q">▸ 站点的信息来源可靠吗？</div>
+      <div class="faq-a">平台参考的材料主要来自公开、可查证的内容渠道，并在整理时尽量保留原意。但建议用户对关键信息进行交叉验证。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">▸ 为什么页面风格偏简洁？</div>
+      <div class="faq-a">我们有意减少视觉干扰，让内容本身成为焦点。暖色背景与圆角卡片也是为了营造温和的阅读氛围。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">▸ 我会在站内看到推广或广告吗？</div>
+      <div class="faq-a">目前站点不嵌入商业广告或诱导性链接，所有内部链接均指向站内内容或必要的外部参考。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">▸ 如何获得更全面的站点导览？</div>
+      <div class="faq-a">你可以直接通过 
+        <a href="https://cn-lecaihui.com" class="inline-link">乐彩汇</a> 
+        的主页获取最新的内容分类与更新说明。平台会持续优化导航结构。
+      </div>
+    </div>
+    <div style="margin-top: 1.4rem; display: flex; justify-content: flex-start;">
+      <a href="https://cn-lecaihui.com" class="cta-link">乐彩汇</a>
+      <span style="margin-left: 0.8rem; align-self: center; font-size: 0.85rem; color: #7a604c;">—— 浏览站点内容索引</span>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footnote">
+    本页面为介绍性展示 · 内容基于公开信息整理 · © 乐彩汇
+  </div>
+</div>
+</body>
+</html>
